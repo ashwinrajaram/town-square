@@ -1,7 +1,6 @@
 import { Paper } from "@mui/material";
 import { useSortable } from "@dnd-kit/sortable";
 
-
 const Post = ({ id, title, description, order }) => {
     const {
         attributes,
@@ -9,7 +8,12 @@ const Post = ({ id, title, description, order }) => {
         setNodeRef,
     } = useSortable({ id });
     return (
-        <Paper elevation={3} className="mt-2" ref={setNodeRef} {...attributes} {...listeners}>
+        <Paper elevation={3} className="mt-2"
+            ref={setNodeRef}
+            {...attributes}
+            {...listeners}
+        >
+
             <h2>{order}. {title}</h2>
             <p>{description}</p>
         </Paper>)
