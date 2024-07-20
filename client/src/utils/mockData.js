@@ -1,6 +1,7 @@
 export const generateMockPosts = (count) => {
     return Array.from({ length: count }, (_, index) => ({
         id: `${index + 1}`,
+        order: `${index + 1}`,
         title: `${generateGibberish(2, 5)}`,
         description: `${generateGibberish(5, 10)}`
     }));
