@@ -3,26 +3,25 @@ import { useEffect, useState } from "react";
 import { CircularProgress, Stack, Typography } from "@mui/material";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { GET_POSTS } from "../apollo/queries";
+import { UPDATE_POST_ORDERS } from "../apollo/mutations";
 
 
 import Post from "./Post";
 
-const PostList = ({ posts }) => {
+const PostList = () => {
 
-    const { loading, error, data } = useQuery(GET_POSTS);
+    const { loading, error, data, refetch } = useQuery(GET_POSTS);
+    const [updatePostOrders] = useMutation(UPDATE_POST_ORDERS);
     const [postList, setPostList] = useState([]);
     const sensors = useSensors(
         useSensor(PointerSensor)
     );
 
 
-
     useEffect(() => {
-
-        // console.log(data);
         if (data && data.posts) {
             console.log(data.posts);
             setPostList(data.posts)
@@ -31,21 +30,46 @@ const PostList = ({ posts }) => {
 
 
 
-    const handleDragEnd = (event) => {
+    const handleDragEnd = async (event) => {
         const { active, over } = event;
         console.log(active);
         console.log(over);
 
         if (active.id !== over.id) {
-            setPostList((items) => {
-                const oldIndex = items.findIndex((item) => item.id === active.id);
-                const newIndex = items.findIndex((item) => item.id === over.id);
 
-                console.log(oldIndex, newIndex);
 
-                return arrayMove(items, oldIndex, newIndex);
-            });
+            const oldIndex = postList.findIndex((item) => item.id === active.id);
+            const newIndex = postList.findIndex((item) => item.id === over.id);
+
+
+            const movedArray = arrayMove(postList, oldIndex, newIndex);
+            const updatedItems = movedArray.map((item, i) => { return { ...item, order: i + 1 } })
+
+            const minIndex = Math.min(oldIndex, newIndex);
+            const maxIndex = Math.max(oldIndex, newIndex);
+
+            const newOrderData = updatedItems.slice(minIndex, maxIndex + 1).map((post) => ({
+                id: post.id,
+                order: post.order,
+            }));
+            console.log(newOrderData);
+
+            setPostList(updatedItems);
+
+            try {
+                await updatePostOrders({
+                    variables: { postOrders: newOrderData },
+                }
+                );
+                await refetch();
+            } catch (error) {
+                console.error("Failed to update post orders:", error);
+                await refetch();
+            }
         }
+
+
+
     };
 
     if (loading) {

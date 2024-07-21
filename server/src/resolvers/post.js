@@ -1,27 +1,53 @@
-// const { generateMockPosts } = require("../../../client/src/utils/mockData");
 import { generateMockPosts } from "../../../client/src/utils/mockData.js";
 
-let posts = generateMockPosts(10);
-console.log(posts);
+
+
+let posts = [{
+    id: "aaa",
+    title: "First Post",
+    order: 1
+},
+{
+    id: "bbb",
+    title: "Second Post",
+    order: 2
+
+},
+{
+    id: "ccc",
+    title: "Third Post",
+    order: 3
+
+},
+{
+    id: "ddd",
+    title: "Fourth Post",
+    order: 4
+
+}
+] //generateMockPosts(10);
 
 const postResolvers = {
     Query: {
         posts: () => posts
     },
     Mutation: {
-        updatePost: (_, { id, title, order, content }) => {
-            const index = posts.findIndex(post => post.id === id);
-            if (index === -1) throw new Error('Post not found');
+        updatePostOrders: (_, { postOrders }) => {
 
-            const updatedPost = {
-                ...posts[index],
-                title: title || posts[index].title,
-                order: order !== undefined ? order : posts[index].order,
-                content: content || posts[index].content,
-                updatedAt: new Date().toISOString(),
-            };
-            posts[index] = updatedPost;
-            return updatedPost;
+            console.log(postOrders);
+
+            // Presist in DB
+            postOrders.forEach(({ id, order }) => {
+                console.log(id, order);
+                const post = posts.find((post) => post.id === id);
+
+                if (post) {
+                    post.order = order;
+                }
+            });
+
+            posts.sort((a, b) => a.order - b.order);
+            return posts;
         }
     },
 };

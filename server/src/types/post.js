@@ -15,7 +15,12 @@ const postTypeDefs = gql`
   }
 
   extend type Mutation {
-    updatePost(id: ID!, title: String, order: Int): Post!
+    updatePostOrders(postOrders: [PostOrderInput]): [Post!]
   }
+
+  input PostOrderInput {
+  id: ID!
+  order: Int!
+}
 `
 export default postTypeDefs
