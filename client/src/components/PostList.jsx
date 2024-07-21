@@ -3,18 +3,12 @@ import { useEffect, useState } from "react";
 import { CircularProgress, Stack, Typography } from "@mui/material";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+
+import { GET_POSTS } from "../apollo/queries";
+
 
 import Post from "./Post";
-
-const GET_POSTS = gql`
-  query GetPosts {
-    posts {
-      id
-      title
-    }
-  }
-`;
 
 const PostList = ({ posts }) => {
 
