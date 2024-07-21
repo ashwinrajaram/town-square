@@ -1,17 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Stack } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
 
 import Post from "./Post";
 
+const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      id
+      title
+    }
+  }
+`;
+
 const PostList = ({ posts }) => {
 
-    const [postList, setPostList] = useState(posts);
+    const { loading, error, data } = useQuery(GET_POSTS);
+    const [postList, setPostList] = useState([]);
     const sensors = useSensors(
         useSensor(PointerSensor)
     );
+
+
+
+    useEffect(() => {
+
+        // console.log(data);
+        if (data && data.posts) {
+            console.log(data.posts);
+            setPostList(data.posts)
+        }
+    }, [data])
+
+
 
     const handleDragEnd = (event) => {
         const { active, over } = event;
@@ -30,6 +54,12 @@ const PostList = ({ posts }) => {
         }
     };
 
+    if (loading) {
+        return <CircularProgress />
+    }
+    if (error) {
+        return <Typography color="error">Error: {error.message}</Typography>
+    }
     return (
         <>
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
