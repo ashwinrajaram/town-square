@@ -11,6 +11,9 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "apollo-server": "^3.13.0"
+    "@prisma/client": "^5.17.0",
+    "@supabase/supabase-js": "^2.44.4",
+    "apollo-server": "^3.13.0",
+    "prisma": "^5.17.0"
   }
 }
