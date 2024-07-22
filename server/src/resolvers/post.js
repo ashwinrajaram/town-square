@@ -1,14 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../utils/prismaClient.js'
 
-const prisma = new PrismaClient({
-    datasources: {
-        db: {
-            url: "",
-        },
-    },
-    log: ['query', 'info', 'warn', 'error'],
-    // connectionLimit: 20,
-})
+
 
 async function withRetry(operation, maxRetries = 3) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {

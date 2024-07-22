@@ -16,6 +16,7 @@ const PostList = () => {
     const sensors = useSensors(useSensor(PointerSensor));
 
     useEffect(() => {
+        console.log(data);
         if (data?.posts) {
             setPostList(data.posts);
         }
@@ -72,6 +73,7 @@ const PostList = () => {
                             id={post.id}
                             title={post.title}
                             order={post.order}
+                            content={post.content}
                         />
                     ))}
                 </SortableContext>

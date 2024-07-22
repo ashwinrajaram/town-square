@@ -18,7 +18,7 @@ const Post = ({ id, title, content, order }) => {
             style={{ transform: CSS.Translate.toString(transform), transition }}
         >
             <div>
-                <p className="bg-red-500 rounded text-white p-4  m-2 inline">{order}</p>
+                <p className="bg-teal-500 rounded text-white p-4  m-2 inline">{order}</p>
                 <Typography variant="h6" className="inline" >{title}</Typography>
             </div>
 

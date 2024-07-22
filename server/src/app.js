@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server';
 // const { startStandaloneServer } = require('apollo-server-standalone');
 import typeDefs from './schema.js';
 import resolvers from './resolvers.js';
-import { context, closeClients } from './context.js';
+import { closeClients } from './utils/prismaClient.js';
 
 // async function startServer() {
 //     const server = new ApolloServer({
@@ -23,7 +23,6 @@ import { context, closeClients } from './context.js';
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: () => context
 });
 
 

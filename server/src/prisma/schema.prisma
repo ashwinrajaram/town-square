@@ -12,20 +12,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-  poolTimeout = 20
-  connectionLimit = 20
 }
 
-datasourceConnectorSettings {
-  poolingMinPoolSize = 2
-  poolingMaxPoolSize = 10
-  poolingIdleTimeout = 5000
-  poolingMaxIdleTimeout = 60000
-  poolingConnectionTimeout = 5000
-  poolingMaxConnectionTimeout = 30000
-  poolingMaxConnectionReuseCount = 100
-  poolingMaxConnectionLifetime = 600000
-}
 
 
 model Post {
