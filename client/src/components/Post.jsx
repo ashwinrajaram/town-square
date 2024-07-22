@@ -1,8 +1,8 @@
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const Post = ({ id, title, description, order }) => {
+const Post = ({ id, title, content, order }) => {
     const {
         attributes,
         listeners,
@@ -11,15 +11,18 @@ const Post = ({ id, title, description, order }) => {
         transition
     } = useSortable({ id });
     return (
-        <Paper elevation={3} className="mt-2"
+        <Paper elevation={3} className="mt-5 p-5 text-left"
             ref={setNodeRef}
             {...attributes}
             {...listeners}
             style={{ transform: CSS.Translate.toString(transform), transition }}
         >
+            <div>
+                <p className="bg-red-500 rounded text-white p-4  m-2 inline">{order}</p>
+                <Typography variant="h6" className="inline" >{title}</Typography>
+            </div>
 
-            <h2>{order}. {title}</h2>
-            <p>{description}</p>
+            <p className="mt-2">{content}</p>
         </Paper>)
 };
 
