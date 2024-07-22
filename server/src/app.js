@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server';
 // const { startStandaloneServer } = require('apollo-server-standalone');
 import typeDefs from './schema.js';
 import resolvers from './resolvers.js';
-import { context } from './context.js';
+import { context, closeClients } from './context.js';
 
 // async function startServer() {
 //     const server = new ApolloServer({
@@ -30,3 +30,13 @@ const server = new ApolloServer({
 server.listen().then(({ url }) => {
     console.log(`Server ready at ${url}`);
 });
+
+// Handle graceful shutdown
+const shutdown = async () => {
+    console.log('Shutting down server...');
+    await closeClients();
+    process.exit(0);
+};
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);

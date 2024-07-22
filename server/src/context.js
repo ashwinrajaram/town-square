@@ -7,3 +7,8 @@ export const context = {
     prisma,
     supabase,
 };
+
+export const closeClients = async () => {
+    await prisma.$disconnect();
+    console.log('Prisma client disconnected.');
+};

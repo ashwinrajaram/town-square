@@ -6,6 +6,7 @@ const postTypeDefs = gql`
     id: ID!
     title: String!
     order: Int!
+    content: String
     createdAt: String
     updatedAt: String
   }

@@ -6,6 +6,7 @@ export const GET_POSTS = gql`
       id
       order
       title
+      content
     }
   }
 `;
