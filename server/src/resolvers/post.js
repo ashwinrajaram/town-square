@@ -1,7 +1,7 @@
 import { prisma } from '../utils/prismaClient.js'
 
 
-
+// move this to utility folder
 async function withRetry(operation, maxRetries = 3) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
@@ -16,14 +16,22 @@ async function withRetry(operation, maxRetries = 3) {
 
 const postResolvers = {
     Query: {
-        posts: async () => {
+        posts: async (_, { skip = 0, take = 10 }) => {
             return withRetry(async () => {
                 try {
                     await prisma.$connect()
-                    const posts = await prisma.post.findMany({
-                        orderBy: { order: 'asc' }
-                    })
-                    return posts
+                    const [posts, totalCount] = await Promise.all([
+                        prisma.post.findMany({
+                            orderBy: { order: 'asc' },
+                            skip,
+                            take
+                        }),
+                        prisma.post.count()
+                    ]);
+                    return {
+                        posts,
+                        totalCount
+                    };
                 } catch (error) {
                     console.error('Error fetching posts:', error)
                     throw new Error('Failed to fetch posts')
@@ -33,6 +41,7 @@ const postResolvers = {
             })
         }
     },
+    //  use With Retry and disconnect client, return paginated posts.
     Mutation: {
         updatePostOrders: async (_, { postOrders }) => {
             console.log(postOrders);

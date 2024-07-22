@@ -10,7 +10,9 @@ import { UPDATE_POST_ORDERS } from "../apollo/mutations";
 import Post from "./Post";
 
 const PostList = () => {
-    const { loading, error, data, refetch } = useQuery(GET_POSTS);
+    const { loading, error, data, refetch } = useQuery(GET_POSTS, {
+        variables: { skip: 0, take: 10 }
+    });
     const [updatePostOrders] = useMutation(UPDATE_POST_ORDERS);
     const [postList, setPostList] = useState([]);
     const sensors = useSensors(useSensor(PointerSensor));
@@ -18,7 +20,7 @@ const PostList = () => {
     useEffect(() => {
         console.log(data);
         if (data?.posts) {
-            setPostList(data.posts);
+            setPostList(data.posts.posts);
         }
     }, [data]);
 

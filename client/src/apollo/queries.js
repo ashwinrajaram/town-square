@@ -1,14 +1,17 @@
 import { gql } from '@apollo/client';
 
 export const GET_POSTS = gql`
-  query GetPosts {
-    posts {
-      id
-      order
-      title
-      content
+    query GetPosts($skip: Int, $take: Int) {
+        posts(skip: $skip, take: $take) {
+            posts {
+                id
+                title
+                content
+                order
+            }
+            totalCount
+        }
     }
-  }
 `;
 
 

@@ -11,8 +11,15 @@ const postTypeDefs = gql`
     updatedAt: String
   }
 
-  extend type Query {
+
+
+   type PaginatedPosts {
     posts: [Post!]!
+    totalCount: Int!
+  }
+
+  extend type Query {
+    posts(skip: Int, take: Int): PaginatedPosts!
   }
 
   extend type Mutation {

@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
+// reuse the client for non production
 export const prisma = new PrismaClient({
     datasources: {
         db: {
