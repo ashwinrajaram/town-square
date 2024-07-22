@@ -2,34 +2,11 @@ import { generateMockPosts } from "../../../client/src/utils/mockData.js";
 
 
 
-let posts = [{
-    id: "aaa",
-    title: "First Post",
-    order: 1
-},
-{
-    id: "bbb",
-    title: "Second Post",
-    order: 2
-
-},
-{
-    id: "ccc",
-    title: "Third Post",
-    order: 3
-
-},
-{
-    id: "ddd",
-    title: "Fourth Post",
-    order: 4
-
-}
-] //generateMockPosts(10);
-
 const postResolvers = {
     Query: {
-        posts: () => posts
+        posts: async (_, __, { prisma }) => {
+            return await prisma.post.findMany();
+        }
     },
     Mutation: {
         updatePostOrders: (_, { postOrders }) => {
