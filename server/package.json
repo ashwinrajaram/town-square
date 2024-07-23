@@ -11,6 +11,9 @@
   "license": "ISC",
   "description": "",
   "type": "module",
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@prisma/client": "^5.17.0",
