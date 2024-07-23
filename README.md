@@ -26,7 +26,7 @@ A simple application that renders a list from DB. The rendered lists can be reor
 
 ## Install instruction
 To run the applicaiton locally, you will need to run both the client and the server at the same time. 
-> :exclamation:IMPORTANT: You will need to create a Supabase account to connect to DB. Once a project is created click on 'connect'. This should give you your 'DATABASE_URL' and 'DIRECT_URL', which will be used to setup our server.
+> :exclamation:IMPORTANT: You will need to create a Supabase account to connect to DB. Create a project in your account and click on 'connect'. This should give you your 'DATABASE_URL' and 'DIRECT_URL', which will be used to setup our server.
 
 Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git`
 
