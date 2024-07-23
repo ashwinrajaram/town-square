@@ -2,7 +2,12 @@
 
 A simple application that renders a list from DB. The rendered lists can be reordered by drag and drop. 
 
-https://town-square-client.onrender.com/
+IMPORTANT: Render free tier will go down with inactivity. Ensure backend is up and running before running the following URL.
+
+Backend URL: https://ashwin-town-square.onrender.com/
+Server URL: https://town-square-client.onrender.com/
+
+
 
 ![Gif-Reorder.gif](https://github.com/ashwinrajaram/town-square/blob/master/Gif-Reorder.gif?raw=true)
 
