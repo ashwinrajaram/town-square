@@ -7,7 +7,7 @@ export const prisma = new PrismaClient({
             url: process.env.DATABASE_URL,
         },
     },
-    log: ['query', 'info', 'warn', 'error'],
+    // log: ['query', 'info', 'warn', 'error'],
 })
 
 export const closeClients = async () => {

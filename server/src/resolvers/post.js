@@ -16,7 +16,7 @@ async function withRetry(operation, maxRetries = 3) {
 
 const postResolvers = {
     Query: {
-        posts: async (_, { skip = 0, take = 10 }) => {
+        posts: async (_, { skip, take }) => {
             return withRetry(async () => {
                 try {
                     await prisma.$connect()
@@ -43,8 +43,8 @@ const postResolvers = {
     },
     //  use With Retry and disconnect client, return paginated posts.
     Mutation: {
-        updatePostOrders: async (_, { postOrders, skip = 0, take = 10 }) => {
-
+        updatePostOrders: async (_, { postOrders, skip, take }) => {
+            console.log("request recieved", postOrders);
             try {
                 await prisma.$transaction(async (prisma) => {
                     const updatePromises = postOrders.map(({ id, order }) =>

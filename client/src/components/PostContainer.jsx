@@ -32,7 +32,7 @@ const PostContainer = () => {
 
     return (
         <>
-            <h1>List of Posts</h1>
+            <Typography variant="h4">List of Posts</Typography>
             <PostList
                 postList={postList}
                 setPostList={setPostList}
