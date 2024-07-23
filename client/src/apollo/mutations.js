@@ -13,3 +13,7 @@ export const UPDATE_POST_ORDERS = gql`
     }
   }
 `;
+
+
+
+// Add other mutations here

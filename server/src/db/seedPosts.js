@@ -7,7 +7,7 @@ async function main() {
     // Delete all existing posts
     await prisma.post.deleteMany();
 
-    // Create 30 mock posts
+    // Create mock posts based on length
     const posts = Array.from({ length: 300 }).map((_, index) => ({
         title: faker.word.words(5),
         content: faker.word.words({ count: { min: 6, max: 11 } }),

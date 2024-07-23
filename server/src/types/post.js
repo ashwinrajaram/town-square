@@ -11,8 +11,6 @@ const postTypeDefs = gql`
     updatedAt: String
   }
 
-
-
    type PaginatedPosts {
     posts: [Post!]!
     totalCount: Int!
