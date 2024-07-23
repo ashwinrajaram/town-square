@@ -32,7 +32,7 @@ Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git
 
 
 ### Setup Server
-Open a new terminal
+Open a new terminal on the root directory
 1. run `cd server`
 2. run `npm i`
 3. run `cd src`
@@ -43,6 +43,7 @@ Open a new terminal
 8. run `node index.js`
 
 ### Setup Client 
+Open a new terminal on the root directory
 1. Run `cd client`
 2. Run `npm i`
 3. create `.env` file
