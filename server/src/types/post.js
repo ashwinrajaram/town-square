@@ -23,8 +23,9 @@ const postTypeDefs = gql`
   }
 
   extend type Mutation {
-    updatePostOrders(postOrders: [PostOrderInput]): [Post!]
+  updatePostOrders(postOrders: [PostOrderInput!]!, skip: Int, take: Int): PaginatedPosts!
   }
+
 
   input PostOrderInput {
   id: ID!

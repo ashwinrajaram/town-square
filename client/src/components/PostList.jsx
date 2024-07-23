@@ -14,6 +14,7 @@ const PostList = () => {
         variables: { skip: 0, take: 10 }
     });
     const [updatePostOrders] = useMutation(UPDATE_POST_ORDERS);
+
     const [postList, setPostList] = useState([]);
     const sensors = useSensors(useSensor(PointerSensor));
 
@@ -40,16 +41,23 @@ const PostList = () => {
 
             const newOrderData = updatedItems.map(({ id, order }) => ({ id, order }));
 
+
+
             try {
                 await updatePostOrders({
-                    variables: { postOrders: newOrderData },
+                    variables: { postOrders: newOrderData, skip: 0, take: 10 },
                     optimisticResponse: {
-                        updatePostOrders: updatedItems
+                        updatePostOrders: {
+                            __typename: "PaginatedPosts",
+                            posts: updatedItems,
+                            totalCount: data.posts.totalCount
+                        }
                     },
-                    update: (cache) => {
+                    update: (cache, { data: { updatePostOrders } }) => {
                         cache.writeQuery({
                             query: GET_POSTS,
-                            data: { posts: updatedItems },
+                            data: { posts: updatePostOrders },
+                            variables: { skip: 0, take: 10 }
                         });
                     },
                 });
@@ -59,7 +67,7 @@ const PostList = () => {
                 await refetch();
             }
         }
-    }, [postList, updatePostOrders, refetch]);
+    }, [postList, updatePostOrders, refetch, data]);
 
     if (loading) return <CircularProgress />;
     if (error) return <Typography color="error">Error: {error.message}</Typography>;

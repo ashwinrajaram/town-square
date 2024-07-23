@@ -43,8 +43,7 @@ const postResolvers = {
     },
     //  use With Retry and disconnect client, return paginated posts.
     Mutation: {
-        updatePostOrders: async (_, { postOrders }) => {
-            console.log(postOrders);
+        updatePostOrders: async (_, { postOrders, skip = 0, take = 10 }) => {
 
             try {
                 await prisma.$transaction(async (prisma) => {
@@ -58,18 +57,25 @@ const postResolvers = {
                     await Promise.all(updatePromises);
                 });
 
-                const updatedPosts = await prisma.post.findMany({
-                    orderBy: { order: 'asc' }
-                });
+                const [updatedPosts, totalCount] = await Promise.all([
+                    prisma.post.findMany({
+                        orderBy: { order: 'asc' },
+                        skip,
+                        take
+                    }),
+                    prisma.post.count()
+                ]);
 
-                console.log(updatedPosts);
-                return updatedPosts;
+                return {
+                    posts: updatedPosts,
+                    totalCount
+                };
             } catch (error) {
                 console.error('Error updating post orders:', error);
                 throw new Error('Failed to update post orders');
             }
         }
-    },
+    }
 }
 
 export default postResolvers

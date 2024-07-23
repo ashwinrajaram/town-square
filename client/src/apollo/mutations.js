@@ -1,10 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const UPDATE_POST_ORDERS = gql`
-  mutation UpdatePostOrders($postOrders: [PostOrderInput!]!) {
-    updatePostOrders(postOrders: $postOrders) {
-      id
-      order
+  mutation UpdatePostOrders($postOrders: [PostOrderInput!]!, $skip: Int, $take: Int) {
+    updatePostOrders(postOrders: $postOrders, skip: $skip, take: $take) {
+      posts {
+        id
+        title
+        content
+        order
+      }
+      totalCount
     }
   }
 `;
