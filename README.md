@@ -1,11 +1,12 @@
 # Town Square Task 
 
 A simple application that renders a list from DB. The rendered lists can be reordered by drag and drop. 
+> :exclamation:IMPORTANT: Render free tier will go down with inactivity. Ensure server is up and running, wait for a few secs the serivce should be backup in a minute. Then run the client.
 
-IMPORTANT: Render free tier will go down with inactivity. Ensure backend is up and running before running the following URL.
 
-Backend URL: https://ashwin-town-square.onrender.com/
-Server URL: https://town-square-client.onrender.com/
+Server URL: https://ashwin-town-square.onrender.com/
+
+Client URL: https://town-square-client.onrender.com/
 
 
 
