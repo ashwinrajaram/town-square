@@ -1,15 +1,15 @@
 
 import './App.css'
-import PostList from './components/PostList';
 import client from './apollo/client'
 import { ApolloProvider } from '@apollo/client'
+import PostContainer from './components/PostContainer';
 
 
 const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="app">
-        <PostList />
+        <PostContainer />
       </div>
     </ApolloProvider>
 
