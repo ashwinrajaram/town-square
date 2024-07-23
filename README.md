@@ -48,6 +48,7 @@ Open a new terminal on the root directory
 2. Run `npm i`
 3. create `.env` file
 4. create a variable named 'VITE_REQUEST_URL' and assign server's URL
+5. Run `npm run dev`
 
 ## Questions? 
 email: ashwin.rajaram@hotmail.com
