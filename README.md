@@ -2,7 +2,7 @@
 
 A simple application that renders a list from DB. The rendered lists can be reordered by drag and drop. 
  
-
+![CroppedGif.gif](https://github.com/ashwinrajaram/town-square/blob/master/CroppedGif.gif?raw=true)
 
 
 ## Project Overview
