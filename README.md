@@ -25,3 +25,28 @@ https://town-square-client.onrender.com/
 ### Deployment:
 - Server is deployed as webservice on Render
 - Client is deployed as a static website on Render
+
+### Install instruction
+To run the applicaiton locally, you will need to run both the client and the server at the same time. 
+
+**IMPORTANT**: You will need to create a Supabase account to connect to DB. Once a project is created click on 'connect'. This should give you your 'DATABASE_URL' and 'DIRECT_URL', which will be used to setup our server.
+
+Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git`
+
+
+#### Setup Server
+Open a new terminal
+1. run `cd server`
+2. run `npm i`
+3. run `cd src`
+4. create `.env` file
+5. create 2 variables 'DATABASE_URL', 'DIRECT_URL' and assign respective values (This can be found on your supabase account).
+6. run `npx prisma generate`
+7. run `npm run seed` to create mock data
+8. run `node index.js`
+
+#### Setup Client 
+1. Run `cd client`
+2. Run `npm i`
+3. create `.env` file
+4. create a variable named 'VITE_REQUEST_URL' and assign server's URL
