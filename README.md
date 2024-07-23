@@ -34,7 +34,7 @@ To run the applicaiton locally, you will need to run both the client and the ser
 Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git`
 
 
-#### Setup Server
+## Setup Server
 Open a new terminal
 1. run `cd server`
 2. run `npm i`
@@ -45,7 +45,7 @@ Open a new terminal
 7. run `npm run seed` to create mock data
 8. run `node index.js`
 
-#### Setup Client 
+## Setup Client 
 1. Run `cd client`
 2. Run `npm i`
 3. create `.env` file
