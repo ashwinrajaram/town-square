@@ -10,6 +10,7 @@ import Post from "./Post";
 const POSTS_PER_PAGE = 10;
 
 const PostList = ({ postList, setPostList, currentPage, totalCount, refetch }) => {
+
     const [updatePostOrders] = useMutation(UPDATE_POST_ORDERS);
     const sensors = useSensors(useSensor(PointerSensor));
 
@@ -22,11 +23,19 @@ const PostList = ({ postList, setPostList, currentPage, totalCount, refetch }) =
             const newIndex = postList.findIndex(item => item.id === over.id);
 
             const updatedItems = arrayMove(postList, oldIndex, newIndex)
-                .map((item, index) => ({ ...item, order: index + 1 }));
 
-            setPostList(updatedItems);
+            // Get the minimum order value
+            const minOrder = Math.min(...updatedItems.map(item => item.order));
 
-            const newOrderData = updatedItems.map(({ id, order }) => ({ id, order }));
+            // Now update the orders starting from the minimum order
+            const reorderedItems = updatedItems.map((item, index) => ({
+                ...item,
+                order: minOrder + index
+            }));
+
+            setPostList(reorderedItems);
+
+            const newOrderData = reorderedItems.map(({ id, order }) => ({ id, order }));
 
             try {
                 await updatePostOrders({
@@ -38,7 +47,7 @@ const PostList = ({ postList, setPostList, currentPage, totalCount, refetch }) =
                     optimisticResponse: {
                         updatePostOrders: {
                             __typename: "PaginatedPosts",
-                            posts: updatedItems,
+                            posts: reorderedItems,
                             totalCount: totalCount
                         }
                     },
