@@ -8,7 +8,7 @@ async function main() {
     await prisma.post.deleteMany();
 
     // Create 30 mock posts
-    const posts = Array.from({ length: 30 }).map((_, index) => ({
+    const posts = Array.from({ length: 300 }).map((_, index) => ({
         title: faker.word.words(5),
         content: faker.word.words({ count: { min: 6, max: 11 } }),
         order: index + 1,
