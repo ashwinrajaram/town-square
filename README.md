@@ -4,6 +4,9 @@ A simple application that renders a list from DB. The rendered lists can be reor
 
 https://town-square-client.onrender.com/
 
+![gif](Git-Reorder.gif)
+
+
 ## Project Overview
 
 ### Frontend:
