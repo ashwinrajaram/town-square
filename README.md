@@ -1,15 +1,7 @@
 # Town Square Task 
 
 A simple application that renders a list from DB. The rendered lists can be reordered by drag and drop. 
-> :exclamation:IMPORTANT: Render free tier will go down with inactivity. Ensure server is up and running, wait for a few secs the serivce should be backup in a minute. Then run the client.
-
-
-Server URL: https://ashwin-town-square.onrender.com/
-
-Client URL: https://town-square-client.onrender.com/
-
-
-
+ 
 ![Gif-Reorder.gif](https://github.com/ashwinrajaram/town-square/blob/master/Gif-Reorder.gif?raw=true)
 
 
@@ -32,10 +24,9 @@ Client URL: https://town-square-client.onrender.com/
 - Server is deployed as webservice on Render
 - Client is deployed as a static website on Render
 
-### Install instruction
+## Install instruction
 To run the applicaiton locally, you will need to run both the client and the server at the same time. 
-
-**IMPORTANT**: You will need to create a Supabase account to connect to DB. Once a project is created click on 'connect'. This should give you your 'DATABASE_URL' and 'DIRECT_URL', which will be used to setup our server.
+> :exclamation:IMPORTANT: You will need to create a Supabase account to connect to DB. Once a project is created click on 'connect'. This should give you your 'DATABASE_URL' and 'DIRECT_URL', which will be used to setup our server.
 
 Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git`
 
@@ -56,3 +47,6 @@ Open a new terminal
 2. Run `npm i`
 3. create `.env` file
 4. create a variable named 'VITE_REQUEST_URL' and assign server's URL
+
+## Questions? 
+email: ashwin.rajaram@hotmail.com
