@@ -50,5 +50,9 @@ Open a new terminal on the root directory
 4. create a variable named 'VITE_REQUEST_URL' and assign server's URL
 5. Run `npm run dev`
 
+### Known Issue 
+On your local setup, if you are using Mac with 'iCloud Relay' turned on, your connection might drop off occassionally. Turning iCloud Relay off would fix this issue.
+
+
 ## Questions? 
 email: ashwin.rajaram@hotmail.com
