@@ -35,11 +35,11 @@ Clone this repo from `git clone https://github.com/ashwinrajaram/town-square.git
 Open a new terminal on the root directory
 1. run `cd server`
 2. run `npm i`
-3. run `cd src`
-4. create `.env` file
-5. create 2 variables 'DATABASE_URL', 'DIRECT_URL' and assign respective values (This can be found on your supabase account).
-6. run `npx prisma generate`
-7. run `npm run seed` to create mock data
+3. create `.env` file
+4. create 2 variables 'DATABASE_URL', 'DIRECT_URL' and assign respective values (This can be found on your supabase account).
+5. run `npx prisma generate`
+6. run `npm run seed` to create mock data
+7. run `cd src`
 8. run `node index.js`
 
 ### Setup Client 
